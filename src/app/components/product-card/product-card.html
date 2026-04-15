@@ -1,0 +1,58 @@
+<p>product-card works!</p>
+<div class="card" style="max-width: 320px">
+
+  <div class="card-body">
+
+    <!-- Q1 : nom en uppercase -->
+    <h5 class="card-title">{{ product.name | uppercase }}</h5>
+
+    <p class="card-text">{{ product.description }}</p>
+
+    <div class="d-flex justify-content-between align-items-center">
+
+      <div>
+        <!-- Q2 : prix avec currency -->
+        <span class="h5 mb-0">{{ product.price | currency:'EUR' }}</span>
+
+        <!-- Q3 : prix barré + remise -->
+        @if (product.originalPrice) {
+          <s class="text-muted ms-2">{{ product.originalPrice | currency:'EUR' }}</s>
+          <span class="badge bg-danger ms-2">
+            -{{ (product.originalPrice - product.price) / product.originalPrice | percent:'1.0-0' }}
+          </span>
+        }
+      </div>
+
+      <div>
+        <i class="bi bi-star-fill text-warning"></i>
+        <i class="bi bi-star-fill text-warning"></i>
+        <i class="bi bi-star-fill text-warning"></i>
+        <i class="bi bi-star-fill text-warning"></i>
+        <i class="bi bi-star-half text-warning"></i>
+        <small class="text-muted">{{ product.reviewCount }}</small>
+      </div>
+
+    </div>
+
+    <!-- Q4 : stock status via pipe custom -->
+    <p class="mt-2 mb-0">
+      <small>{{ product.stock | stockStatus }}</small>
+    </p>
+
+    <!-- Q5 : remise via pipe custom -->
+    @if (product.originalPrice) {
+      <small class="text-success">
+        Remise : {{ product.price | discount:product.originalPrice }}%
+      </small>
+    }
+
+  </div>
+
+  <div class="card-footer d-flex justify-content-between bg-light">
+    <button class="btn btn-primary btn-sm">Ajouter au panier</button>
+    <button class="btn btn-outline-secondary btn-sm">
+      <i class="bi bi-heart"></i>
+    </button>
+  </div>
+
+</div>

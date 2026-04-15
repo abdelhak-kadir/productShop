@@ -1,0 +1,29 @@
+<p>product-filter works!</p>
+<input [(ngModel)]="searchText" placeholder="Rechercher..." class="form-control" />
+<select [(ngModel)]="selectedCategory" class="form-select">
+  <option value="toutes">Toutes</option>
+  @for (cat of categories; track cat) {
+    <option [value]="cat">{{ cat }}</option>
+  }
+</select>
+<br />
+<input type="range" [(ngModel)]="maxPrice" min="0" max="2000" step="50" class="form-range" />
+<br />
+
+<span>{{ maxPrice | currency:'EUR' }}</span>
+
+<input
+  [(ngModel)]="searchText"
+  [style.borderColor]="searchText ? '#22c55e' : '#d1d5db'"
+  class="form-control"
+/>
+<br />
+
+<button (click)="onReset()" class="btn btn-outline-secondary btn-sm">
+  Réinitialiser
+</button>
+<br />
+
+<button [disabled]="isDefault" class="btn btn-primary btn-sm">
+  Filtrer
+</button>
