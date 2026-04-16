@@ -1,9 +1,10 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Product } from '../../models/product.model';
+import { ProductCardComponent } from '../product-card/product-card';
 
 @Component({
   selector: 'app-product-list',
-  imports: [],
+  imports: [ProductCardComponent],
   templateUrl: './product-list.html',
   styleUrl: './product-list.scss',
 })

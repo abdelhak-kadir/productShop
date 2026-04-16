@@ -3,11 +3,15 @@ import { CartItem, Product, ProductCategory } from './models/product.model';
 import { CurrencyPipe, DatePipe, DecimalPipe, JsonPipe } from '@angular/common';
 import { ProductFilter } from './components/product-filter/product-filter';
 import { ProductCardComponent } from './components/product-card/product-card';
+import { ProductList } from './components/product-list/product-list';
 
 
 @Component({
   selector: 'app-root',
-  imports: [ ProductFilter, ProductCardComponent,
+  imports: [ 
+    ProductFilter, 
+    ProductCardComponent,
+    ProductList, 
      DecimalPipe,   
     CurrencyPipe,   
     DatePipe,       
