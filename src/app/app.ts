@@ -8,10 +8,10 @@ import { ProductCardComponent } from './components/product-card/product-card';
 @Component({
   selector: 'app-root',
   imports: [ ProductFilter, ProductCardComponent,
-     DecimalPipe,    // pipe 'number'
-    CurrencyPipe,   // pipe 'currency'
-    DatePipe,       // pipe 'date'
-    JsonPipe,       // pipe 'json'
+     DecimalPipe,   
+    CurrencyPipe,   
+    DatePipe,       
+    JsonPipe,      
   ],
   templateUrl: './app.html',
   styleUrl: './app.scss'
@@ -50,8 +50,20 @@ export class App {
 ];
 selectedProduct: Product | null = null;
 cart: CartItem[] = [];
+  searchText: any;
+  selectedCategory: string | undefined;
+  maxPrice: number | undefined;
 get cartTotal(): number {
   return this.cart.reduce((sum, item) => sum + item.product.price * item.quantity, 0);
 }
-
+get filteredProducts(): Product[] {
+  return this.products.filter(p => {
+    const matchText = !this.searchText ||
+      p.name.toLowerCase().includes(this.searchText.toLowerCase()) ||
+      p.brand.toLowerCase().includes(this.searchText.toLowerCase());
+    const matchCat = this.selectedCategory === 'toutes' || p.category === this.selectedCategory;
+    const matchPrice = !this.maxPrice || p.price <= this.maxPrice;
+    return matchText && matchCat && matchPrice;
+  });
+}
 }

@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Product } from '../../models/product.model';
 
 @Component({
   selector: 'app-product-list',
@@ -6,4 +7,9 @@ import { Component } from '@angular/core';
   templateUrl: './product-list.html',
   styleUrl: './product-list.scss',
 })
-export class ProductList {}
+
+export class ProductList {
+  @Input() products: Product[] = [];  
+  @Input() selectedId: number | null = null;
+
+}

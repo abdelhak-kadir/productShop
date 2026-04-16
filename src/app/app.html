@@ -16,3 +16,8 @@
 @if (selectedProduct) {
   <pre class="debug">{{ selectedProduct | json }}</pre>
 }
+
+<app-product-list
+  [products]="filteredProducts"
+  [selectedId]="selectedProduct?.id ?? null">
+</app-product-list>

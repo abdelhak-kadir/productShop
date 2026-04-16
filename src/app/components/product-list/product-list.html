@@ -1,1 +1,16 @@
 <p>product-list works!</p>
+@for (product of products; track product.id) {
+  @if (product.imageUrl) {
+    <img [src]="product.imageUrl" [alt]="product.name" />
+  } @else {
+    <div class="placeholder-img bg-secondary" style="height:160px"></div>
+  }
+
+  @if (product.stock === 0) {
+    <span class="text-danger fw-bold">Rupture</span>
+  }
+
+  <app-product-card [product]="product" />
+} @empty {
+  <p>Aucun produit correspond à votre recherche.</p>
+}

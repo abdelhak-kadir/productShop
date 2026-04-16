@@ -4,8 +4,8 @@ import { CurrencyPipe } from '@angular/common';
 @Component({
   selector: 'app-product-filter',
   imports: [
-    FormsModule,    // ← ngModel
-    CurrencyPipe,   // ← pipe 'currency'
+    FormsModule,    
+    CurrencyPipe,   
   ],
   templateUrl: './product-filter.html',
   styleUrl: './product-filter.scss',
