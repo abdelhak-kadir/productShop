@@ -1,16 +1,27 @@
-<p>product-list works!</p>
-@for (product of products; track product.id) {
-  @if (product.imageUrl) {
-    <img [src]="product.imageUrl" [alt]="product.name" />
-  } @else {
-    <div class="placeholder-img bg-secondary" style="height:160px"></div>
-  }
+<div class="mt-4">
+  <h5 class="fw-semibold mb-3">Résultats filtrés</h5>
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+    @for (product of products; track product.id) {
+      <div class="col">
+        @if (product.imageUrl) {
+          <img [src]="product.imageUrl" [alt]="product.name" class="img-fluid rounded mb-2" />
+        } @else {
+          <div class="placeholder-img bg-light border rounded d-flex align-items-center justify-content-center mb-2"
+               style="height:160px">
+            <i class="bi bi-image text-secondary" style="font-size:2rem"></i>
+          </div>
+        }
 
-  @if (product.stock === 0) {
-    <span class="text-danger fw-bold">Rupture</span>
-  }
+        @if (product.stock === 0) {
+          <span class="badge bg-danger mb-1">Rupture de stock</span>
+        }
 
-  <app-product-card [product]="product" />
-} @empty {
-  <p>Aucun produit correspond à votre recherche.</p>
-}
+        <app-product-card [product]="product" />
+      </div>
+    } @empty {
+      <div class="col-12">
+        <p class="text-muted fst-italic">Aucun produit ne correspond à votre recherche.</p>
+      </div>
+    }
+  </div>
+</div>

@@ -1,17 +1,16 @@
-<p>product-card works!</p>
-<div class="card" style="max-width: 320px">
+<div class="card h-100 shadow-sm" style="max-width: 320px; transition: transform 0.2s;"
+     onmouseover="this.style.transform='translateY(-4px)'"
+     onmouseout="this.style.transform='translateY(0)'">
 
   <div class="card-body">
-
-    <h5 class="card-title">{{ product.name | uppercase }}</h5>
-
-    <p class="card-text">{{ product.description }}</p>
+    <span class="badge bg-secondary mb-2">{{ product.category }}</span>
+    <h5 class="card-title fw-bold">{{ product.name | uppercase }}</h5>
+    <p class="text-muted small">{{ product.brand }}</p>
+    <p class="card-text small">{{ product.description }}</p>
 
     <div class="d-flex justify-content-between align-items-center">
-
       <div>
-        <span class="h5 mb-0">{{ product.price | currency:'EUR' }}</span>
-
+        <span class="h5 mb-0 text-primary fw-bold">{{ product.price | currency:'EUR' }}</span>
         @if (product.originalPrice) {
           <s class="text-muted ms-2">{{ product.originalPrice | currency:'EUR' }}</s>
           <span class="badge bg-danger ms-2">
@@ -19,16 +18,14 @@
           </span>
         }
       </div>
-
       <div>
         <i class="bi bi-star-fill text-warning"></i>
         <i class="bi bi-star-fill text-warning"></i>
         <i class="bi bi-star-fill text-warning"></i>
         <i class="bi bi-star-fill text-warning"></i>
         <i class="bi bi-star-half text-warning"></i>
-        <small class="text-muted">{{ product.reviewCount }}</small>
+        <small class="text-muted ms-1">{{ product.reviewCount }}</small>
       </div>
-
     </div>
 
     <p class="mt-2 mb-0">
@@ -40,14 +37,14 @@
         Remise : {{ product.price | discount:product.originalPrice }}%
       </small>
     }
-
   </div>
 
   <div class="card-footer d-flex justify-content-between bg-light">
-    <button class="btn btn-primary btn-sm">Ajouter au panier</button>
+    <button class="btn btn-primary btn-sm">
+      <i class="bi bi-cart-plus me-1"></i>Ajouter au panier
+    </button>
     <button class="btn btn-outline-secondary btn-sm">
       <i class="bi bi-heart"></i>
     </button>
   </div>
-
 </div>

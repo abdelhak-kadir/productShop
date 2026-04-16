@@ -1,29 +1,31 @@
-<p>product-filter works!</p>
-<input [(ngModel)]="searchText" placeholder="Rechercher..." class="form-control" />
-<select [(ngModel)]="selectedCategory" class="form-select">
-  <option value="toutes">Toutes</option>
-  @for (cat of categories; track cat) {
-    <option [value]="cat">{{ cat }}</option>
-  }
-</select>
-<br />
-<input type="range" [(ngModel)]="maxPrice" min="0" max="2000" step="50" class="form-range" />
-<br />
+<div class="row g-3 align-items-end">
+  <div class="col-md-4">
+    <label class="form-label fw-semibold">Rechercher</label>
+    <input [(ngModel)]="searchText" placeholder="Nom, marque..." class="form-control"
+           [style.borderColor]="searchText ? '#22c55e' : ''" />
+  </div>
 
-<span>{{ maxPrice | currency:'EUR' }}</span>
+  <div class="col-md-3">
+    <label class="form-label fw-semibold">Catégorie</label>
+    <select [(ngModel)]="selectedCategory" class="form-select">
+      <option value="toutes">Toutes</option>
+      @for (cat of categories; track cat) {
+        <option [value]="cat">{{ cat }}</option>
+      }
+    </select>
+  </div>
 
-<input
-  [(ngModel)]="searchText"
-  [style.borderColor]="searchText ? '#22c55e' : '#d1d5db'"
-  class="form-control"
-/>
-<br />
+  <div class="col-md-3">
+    <label class="form-label fw-semibold">Prix max : {{ maxPrice | currency:'EUR' }}</label>
+    <input type="range" [(ngModel)]="maxPrice" min="0" max="2000" step="50" class="form-range" />
+  </div>
 
-<button (click)="onReset()" class="btn btn-outline-secondary btn-sm">
-  Réinitialiser
-</button>
-<br />
-
-<button [disabled]="isDefault" class="btn btn-primary btn-sm">
-  Filtrer
-</button>
+  <div class="col-md-2 d-flex gap-2">
+    <button (click)="onReset()" class="btn btn-outline-secondary btn-sm w-100">
+      <i class="bi bi-x-circle me-1"></i>Reset
+    </button>
+    <button [disabled]="isDefault" class="btn btn-primary btn-sm w-100">
+      <i class="bi bi-funnel me-1"></i>Filtrer
+    </button>
+  </div>
+</div>
