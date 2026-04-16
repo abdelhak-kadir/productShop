@@ -66,4 +66,16 @@ get filteredProducts(): Product[] {
     return matchText && matchCat && matchPrice;
   });
 }
+onProductSelected(p: Product) {
+  this.selectedProduct = p;
+}
+
+onAddToCart(p: Product) {
+  const existing = this.cart.find(item => item.product.id === p.id);
+  if (existing) {
+    existing.quantity++;
+  } else {
+    this.cart.push({ product: p, quantity: 1 });
+  }
+}
 }

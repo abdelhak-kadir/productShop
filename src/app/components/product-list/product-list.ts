@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Product } from '../../models/product.model';
 
 @Component({
@@ -11,5 +11,6 @@ import { Product } from '../../models/product.model';
 export class ProductList {
   @Input() products: Product[] = [];  
   @Input() selectedId: number | null = null;
-
+  @Output() productSelected = new EventEmitter<Product>();
+  @Output() addedToCart = new EventEmitter<Product>();
 }
